@@ -1,10 +1,17 @@
 import mongoose from "mongoose";
 
+const lessonSchema = new mongoose.Schema({
+  title: String,
+  content: String,
+});
+
 const courseSchema = new mongoose.Schema({
-  title: { type: String, required: true },
+  title: String,
   description: String,
-  price: { type: Number, default: 0 },
-  thumbnailUrl: String
-}, { timestamps: true });
+  price: Number,
+  thumbnailUrl: String,
+
+  lessons: [lessonSchema],   // <── ADD THIS
+});
 
 export default mongoose.model("Course", courseSchema);
